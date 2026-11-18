@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Nodo 1 - Hospital A
+  db_hospital_1:
+    image: mariadb:10.11
+    container_name: nodo_hospital_1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_hospital_1
+    ports:
+      - "3306:3306"
+    networks:
+      - red_salud
+
+  # Nodo 2 - Hospital B
+  db_hospital_2:
+    image: mariadb:10.11
+    container_name: nodo_hospital_2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_hospital_2
+    ports:
+      - "3307:3306"
+    networks:
+      - red_salud
+
+  # Nodo 3 - Hospital C
+  db_hospital_3:
+    image: mariadb:10.11
+    container_name: nodo_hospital_3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_hospital_3
+    ports:
+      - "3308:3306"
+    networks:
+      - red_salud
+
+# Definición de la red virtual compartida
+networks:
+  red_salud:
+    driver: bridge
